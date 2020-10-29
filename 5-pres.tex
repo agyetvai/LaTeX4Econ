@@ -1,0 +1,97 @@
+\documentclass[presentation]{beamer}		% Handout mode
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+
+\setbeamercovered{transparent}
+
+\usepackage[utf8]{inputenc}		% Character encoding
+\usepackage[T1]{fontenc}			% Font encoding
+\usepackage[english]{babel}		% Language setting
+\usepackage{hyperref}			% References
+
+\title{Presentations in Beamer}
+\author[Gyetvai]{Attila Gyetvai}
+\institute[CEU]{Central European University}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{frame}
+
+	\titlepage
+	
+	\begin{figure}
+	\centering
+	\includegraphics[scale=0.2]{ceu-logo.jpg}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{My first frame}
+	
+	Here comes some content.
+	Can be a picture, a list, anything.
+	
+	\begin{enumerate}
+		\item
+		Like
+		\item
+		this.
+	\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+\label{theorems}
+	
+	\frametitle{Theorems}
+	
+	\begin{theorem}[Marker]
+		All markers are black.
+	\end{theorem}
+	
+	\begin{example}[Whatever]
+		An example.
+	\end{example}
+	
+	\begin{block}{Anything}
+		Random other blocks.
+	\end{block}
+
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Shortcuts}
+	
+	Here is a shortcut.
+	\hyperlink{theorems}{\beamergotobutton{Jump to Theorems}}
+		
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Animations}
+	
+	You can create pauses \pause like \pause this.
+	
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{Animations (cont'd)}
+	
+	\begin{itemize}
+		\item<1-3> \alert<1-2> {You}
+		\item<2-3> can
+		\item<3> create
+		\item<4> animated itemizations too.
+	\end{itemize}
+
+\end{frame}
+
+\end{document}

@@ -1,0 +1,227 @@
+\documentclass{article}			% Try book, report etc.
+
+\usepackage[utf8]{inputenc}		% Character encoding
+\usepackage[T1]{fontenc}			% Font encoding
+\usepackage[english]{babel}		% Language setting
+\usepackage{enumerate}			% Custom enumeration lists
+\usepackage{shortlst}			% Compact inline listings
+\usepackage{natbib}				% Harvard-style bibliography with several options
+\usepackage{float}				% Custom table and figure alignment
+\usepackage{multirow}			% Multiple rows in a table
+\usepackage{hyperref}			% References
+\usepackage{makecell}			% Custom table lines
+\hypersetup{						% Setup for this package
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+\usepackage{amsmath,mathtools}	% AMS math package, with bugfixes in mathtools
+\usepackage{amssymb}				% Math symbols
+\usepackage{amsthm}				% Custom theorem environments
+\usepackage{units}				% Numerical fractions
+
+% Custom theorems
+% \newtheorem{command}[counter]{Display name}
+\newtheorem{theorem}{Theorem}[]
+\newtheorem{acknowledgement}[theorem]{Acknowledgment}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\theoremstyle{definition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\title{Math in \LaTeX}			% This is how the symbol for LaTeX and TeX are typeset
+\author{Attila Gyetvai}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle						% If date is not specified, current date is included; for no 										  date, write \date{}
+
+\section{Environments, equations}
+
+This is an inline math environment: $f(x) = 2 x$.
+
+This is a dedicated math environment:
+\[
+f(x) = 2 x
+\]
+You can do it like this too\footnote{However, it is fragile, so you should avoid it.}:
+$$
+f(x) = 2 x
+$$
+The best way to write dedicated math expressions is the equation environment:
+\begin{equation}
+f(x) = 2 x
+\end{equation}
+For no numbering, use the starred version:
+\begin{equation*}
+f(x) = 2 x
+\end{equation*}
+Systems of equations are put in the align environment:
+\begin{align*}
+f(x) &= 2 x \\
+g(x) &= 9 \, x			% Note that there is no line break before intertext!
+\intertext{For short texts in between:}
+h(x) &= 0.1 x
+\end{align*}
+
+\section{Formulae, symbols}
+
+\begin{align*}
+a^2 + b^2 &= c^2 \\
+a_1^2 + a_2^2 &= a_3^2 \\
+a_{11}^2 + a_{12}^2 &= a_{13}^2 \\		% If multiple characters in super- or subscript, use 										  braces!
+\sin x = \alpha &\iff x = \arcsin x \\
+\Pi &\implies \pi \\
+\frac{2 x}{4 y} &= \frac{x}{2 y} \\
+\nicefrac{1}{2} &\neq \mathbb{N} \\
+\log x \to 0 \mbox{ as } x \to - \infty &\iff \lim_{x \to - \infty} x = 0
+\end{align*}
+
+\section{Operators}
+
+\begin{align*}
+y &= \beta_0 + \beta_1 \, x_1 + u \\
+y &= \beta_0 + \beta_1 \, x_1 + \beta_2 \, x_1^2 + u \\
+y &= \beta_0 + \sum_{i=1}^j \beta_i \, x_i + u \\
+\hat{y} &= \hat{\beta}_0 + \sum_{i=1}^j \hat{\beta}_i \, x_i \\	% Hat
+\widehat{educ} &= \hat{\beta}_0 + \sum_{i=1}^j \hat{\beta}_i \, x_i \\	% Wide hat
+\bar{y} &= \beta_0 + \sum_{i=1}^j \beta_i \, \bar{x}_i + u \\		% Bar
+\end{align*}
+Inline version: $y = \beta_0 + \sum_{i=1}^j \beta_i \, x_i + u$.
+Inline version with full typography: $\displaystyle y = \beta_0 + \sum_{i=1}^j \beta_i \, x_i + u$.
+
+\section{Vectors, matrices}
+
+\begin{align*}
+\begin{matrix}
+1 & 2
+\end{matrix} \qquad
+\begin{matrix}
+1 \\
+2
+\end{matrix}\qquad
+\begin{matrix}
+1 & 2 \\
+1 & 2
+\end{matrix} \\
+\begin{pmatrix}
+1 & 2
+\end{pmatrix} \qquad
+\begin{bmatrix}
+1 \\
+2
+\end{bmatrix}\qquad
+\begin{vmatrix}
+1 & 2 \\
+1 & 2
+\end{vmatrix}
+\end{align*}
+
+\subsection*{All together}
+
+\begin{align*}
+\begin{pmatrix}
+\alpha_{11} & \alpha_{12} \\
+\alpha_{21} & \alpha_{22}
+\end{pmatrix}
+\begin{pmatrix}
+x_1 \\
+x_2
+\end{pmatrix}
+\iff
+\sum_{i=1}^2 \alpha_{i1} \, x_1 + \sum_{i=1}^2 \alpha_{i2} \, x_2
+\end{align*}
+
+\section{Theorems}
+
+\begin{theorem}
+All markers are blue.
+\end{theorem}
+\begin{proof}
+By counterexample.
+You can buy black ones in the store.
+\end{proof}
+\begin{problem}[Varian 32.116]
+Two guys, $x$ and $y$ play the chicken game.
+\end{problem}
+\setcounter{theorem}{0}
+\begin{assumption}
+There might be pink markers.
+\end{assumption}
+\addtocounter{theorem}{1}
+\begin{summary}
+Theorems in \LaTeX\ are cool.
+\end{summary}
+
+\section{Regression outputs}
+
+\subsection{Equation}
+
+\begin{align*}
+\widehat{wage} &= - \underset{(.77)}{3.39} + \underset{(.0538)}{.6443} \, educ + \underset{(.0110)}{.0701} \, exper \\
+n &= 526, \quad R^2 = .2252
+\end{align*}
+
+\subsection{Table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cr@{.}lr@{.}lr@{.}lr@{.}lr@{.}lr@{.}l}
+\hline 
+$wage$ & \multicolumn{2}{c}{Coeff.} & \multicolumn{2}{c}{St.e.} & \multicolumn{2}{c}{$t$-stat.} & \multicolumn{2}{c}{$p$-value} & \multicolumn{4}{c}{95\% conf. int.} \\ 
+\hline 
+$educ$   &   &6443 & &0538 &  11&97 & &000 &   &5386 &   &7500 \\ 
+$exper$  &   &0701 & &0110 &  6&39  & &000 &   &0485 &   &0917 \\ 
+constant & -3&39   & &77   & -4&42  & &000 & -4&90   & -1&88 \\
+\hline
+\multicolumn{13}{c}{$n=526, \quad R^2 = .2252$}
+\end{tabular} 
+\end{table}
+
+\subsection*{My way}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cccr@{.}lc}
+\Xhline{3\arrayrulewidth}
+\multicolumn{6}{c}{Dependent variable: $wage$} \\
+& & {\small Coefficient} & \multicolumn{2}{c}{\small $t$-stat.} & \\
+\cline{2-5}
+& $educ$ & $\underset{(.0538)}{.6443}^{***}$ & 11&97 & \\
+& $exper$ & $\underset{(.0110)}{.0701}^{***}$ & 6&39 & \\
+& constant & $- \underset{(.77)}{3.39}^{***}$ & -4&42 & \\
+\cline{2-5}
+\multicolumn{6}{c}{$n=526 \qquad \bar{R}^2 = .2222$} \\
+\Xhline{3\arrayrulewidth}
+\end{tabular}
+\caption{OLS regression. 
+{\scriptsize Standard errors in parentheses.
+$^{***}$: significance at the 1\% level.}}
+\end{table}
+
+\end{document}
